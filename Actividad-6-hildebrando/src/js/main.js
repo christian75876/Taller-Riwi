@@ -1,7 +1,7 @@
 //Pago dia viernes.
 let budget = 2500000;
 
-//Dia viernes elección de comida.
+//Dia viernes 'Bogota' elección de comida.
 const choiseFood = (selectFoot) => {
     const message = `Disfruta tu comida, recuerda tu presupuesto restante es: $`;
     switch (selectFoot) {
@@ -19,6 +19,12 @@ const choiseFood = (selectFoot) => {
         default:
             alert('Opción incorrecta. Evento inesperado. Error presentado en dia viernes choiseFood....!!!');
     }
+    let choise = confirm('Deseas comprar algo mas?');
+    if (choise) {
+        footSelect()
+    } else {
+        return
+    }
 }
 
 const footSelect = () => {
@@ -35,5 +41,49 @@ const footSelect = () => {
 
 }
 
-//Sala de espera
-const suitcaseSizeEstandar = 55*40*20;
+// Dia Viernes sala de espera
+const waitingRoom = () => {
+    const standarTallSuitcase = 55;
+    const standarLengthSuitcase = 40;
+    const standarWidthSuitcase = 20;
+
+    let tallSuitcase = 60;
+    let lengthSuitcase = 40;
+    let widthSuitcase = 20;
+
+    alert(`Hola Hildebrando ahora te encuentras en la sala de espera pero a ocurrido un problema con tu equipaje, este no cumple con las medidas estandar debes reducir el tamaño de tu maleta de mano las medidas permitidas son: 55 cm (alto) x 40 cm (largo) x 20 cm (ancho) y tus medidas actuales son: 
+    * alto ${tallSuitcase} cm
+    * largo ${lengthSuitcase} cm
+    * ancho ${widthSuitcase} cm\nAsi que debes sacar ropa!`)
+
+    //Factor de reducción
+    let factorTall = standarTallSuitcase / tallSuitcase;
+    let factoLength = standarLengthSuitcase / lengthSuitcase;
+    let factoWidth = standarWidthSuitcase / widthSuitcase;
+
+    let factMin = Math.min(factorTall, factoLength, factoWidth);
+
+    tallSuitcase *= factMin;
+    lengthSuitcase *= factMin;
+    widthSuitcase *= factMin;
+
+    alert(`Que bien as sacado el factor minimo de las medidas y as disminuido correctamente tu equipaje. las nuevas medidas que tienes ahora son:
+    * alto ${Math.round(tallSuitcase)} cm
+    * largo ${Math.round(lengthSuitcase)} cm
+    * ancho ${Math.round(widthSuitcase)} cm \nCumples con las politcas de la maleta continua!`)
+
+}
+
+//Dia Sabado 'Medellin' 02:00
+const hunger = () => {
+    if(selectFoot === '3'){
+        let choise = confirm(`Hace un poco de Hambre. Quieres comprar algo?`)
+        if (choise){
+            let menu = prompt(`son las 02:00 solo esta abierto `)
+        }
+    }
+}
+
+
+footSelect();
+waitingRoom();
