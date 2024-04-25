@@ -1,5 +1,6 @@
 //Pago dia viernes.
 let budget = 2500000;
+let days = 0;
 alert('Te encuentras en el areopuerto el dorado en bogota y tienes hambre!')
 
 //Dia viernes 'Bogota' elección de comida.
@@ -197,20 +198,43 @@ const priceTaxi = () => {
   }
 };
 
+//final
+const finishTravel = (survived=true) => {
+  let aux = 2500000 - budget;
+  if (aux > 2500000) {
+    alert('Increíblemente, has ganado dinero en este viaje. ¡Sigue viajando!');
+  }
+  if (survived) {
+    alert('¡El viaje ha terminado con éxito!');
+    alert(`Has sobrevivido ${days} días en Macondo.
+           Regresaste vivo.
+           El dinero gastado fue de ${aux}`);
+           return;
+  } else {
+    alert(`Tus decisiones te han llevado a la muerte. No pudiste regresar.
+           Estuviste en Macondo durante ${days} días y gastaste un total de ${aux}.
+           Qué pena.`);
+           return;
+  }
+};
+
 //Hotel actividades
 const yellow = () => {
   alert('as elegido venir a piscina, el agua huele bastante extraño como a "ClO-" mezclado con "Na"');
   let choice = confirm('Vas a ingresar a la piscina con ese olor y gases tan fuertes?');
   if(choice){
     finishTravel(false);
+    return;
+  }else{
+    alert('As regresado al tu habitacion del hotel y pasara un nuevo dia');
+    activityHotel();
   }
-  alert('As regresado al tu habitacion del hotel y pasara un nuevo dia');
-  activityHotel();
+  
 }
 
 const green = () => {
   alert('As elegido realizar caminatas, y tomar agua para el camino');
-  let choice = prompt('Vas a realizar toda la caminata , al final hay una hermosa cascada');
+  let choice = confirm('Vas a realizar toda la caminata , al final hay una hermosa cascada');
   if(!choice){
     alert(`Como as elegido devolverte, te as perdido y es de noche!
     pero puedes ver!
@@ -228,7 +252,7 @@ const red = () => {
         - voleibol, juega y la pasa genial.
         - nada en el mar, y monta moto
         - se pone a tomar cocteles mientras descansa, de pronto siente un fuerte dolor de cabeza y empieza a perder la visión, chirrinchi adulterado, se tiene que devolver de emergencia.`);
-        finishTravel()
+        finishTravel(false);
 }
 
 let bingo = Math.random();
@@ -268,52 +292,43 @@ const activitySelect = (select) => {
   }
 }
 
-let days = 1;
+
 
 const activityHotel = () => {
   let choise = confirm('Deseas hacer una actividad hoy en el hotel!');
-  while (choise === true){
-    let select = prompt(`Ingrese que actividad desea realizar:
+  if (choise) {
+    let select = prompt(`Ingrese qué actividad desea realizar:
                         1. Ir a la piscina, pero el agua huele raro!
                         2. Realizar caminatas y agüita para el camino!
                         3. Actividades en la playa!
-                        4. Actividaddes dentro del hotel
+                        4. Actividades dentro del hotel
                         5. Regresar a casa`);
-    if (select === '5'){
-      return;
-    }
-    activitySelect(select);
-    days++;
-  }
-  if(choise === false){
-    alert('No quieres hacer nada el dia de hoy! ok');
-    days++;
-    alert('Nuevo dia');
-    activityHotel();
-  }
-}
 
-const finishTravel = (survived=true) => {
-  let aux = 2500000 - budget;
-  if (survived) {
-    alert('¡El viaje ha terminado con éxito!');
-    alert(`Has sobrevivido ${days} días en Macondo.
-           Regresaste vivo.
-           El dinero gastado fue de ${aux}`);
-  } else {
-    alert(`Tus decisiones te han llevado a la muerte. No pudiste regresar.
-           Estuviste en Macondo durante ${days} días y gastaste un total de ${aux}.
-           Qué pena.`);
-    if (aux > 2500000) {
-      alert('Increíblemente, has ganado dinero en este viaje. ¡Sigue viajando!');
+    if (select >= 1 && select <= 5) {
+      days++;
+      console.log('desde el hotel' + days);
+      activitySelect(select);
+    } else {
+      alert('Valor no válido. Por favor, seleccione una opción válida.');
+      activityHotel();
     }
+  } else {
+    alert('No quieres hacer nada el día de hoy. ¡Bien!');
+    days++;
+    alert('Nuevo día');
   }
 };
 
-footSelect();
-waitingRoom();
-hunger();
-binPassword();
-vocal();
-priceTaxi();
-activityHotel();
+
+
+
+
+  footSelect();
+  waitingRoom();
+  hunger();
+  binPassword();
+  vocal();
+  priceTaxi();
+  activityHotel();
+
+
