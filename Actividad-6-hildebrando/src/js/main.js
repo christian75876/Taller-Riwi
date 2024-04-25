@@ -15,9 +15,8 @@ const choiseFood = (selectFoot) => {
       break;
     case "3":
       alert(
-        `Deberas comprar comida al llegar a medellin tu presupuesto sigue en: $${budget}`
-      );
-      break;
+        `Deberas comprar comida al llegar a medellin tu presupuesto sigue en: $${budget}`);
+      return;
     default:
       alert(
         "Opción incorrecta. Evento inesperado. Error presentado en dia viernes choiseFood....!!!"
@@ -83,7 +82,7 @@ const waitingRoom = () => {
 //Dia Sabado 'Medellin' 02:00
 const hunger = () => {
   if (selectFoot === "3") {
-    let choise = confirm(`Hace un poco de Hambre. Quieres comprar algo?`);
+    let choise = confirm(`As llegado a la ciudad de Medellin. Hace un poco de Hambre, quieres comprar algo?`);
     if (choise) {
       let menu = confirm(
         `son las 02:00 solo esta abierto un restaurante, unicamente tiene combo de hamburger a $60.000`
@@ -97,10 +96,9 @@ const hunger = () => {
 };
 
 const binPassword = () => {
-  let confirm = confirm(
-    "Vas a usar el wifi? recuerda que cada hora tiene un precio de $50.000"
-  );
-  if (confirm) {
+  let option = confirm("Vas a usar el wifi? recuerda que cada hora tiene un precio de $50.000");
+  if (option) {
+    alert('La contraseña esta en numeros binarios "01110010_01101001_01110111_01101001"; vamos a traducirla la contraseña es: ')
     let pass = "01110010_01101001_01110111_01101001".split("_");
     let result = "";
     pass.forEach((num) => {
@@ -109,10 +107,7 @@ const binPassword = () => {
       result += password;
     });
     alert(result);
-    let hours = 0;
-    while (hours < 0) {
-      hours = parseInt("Ingresa cuantas horas utilizaste el wifi");
-    }
+    let hours = parseInt(prompt("Ingresa cuantas horas utilizaste el wifi"));
     budget -= hours * 50000;
     alert(`Tu presupuesto restante es: $${budget}`);
   } else {
@@ -146,20 +141,36 @@ const getRandomInt = () => {
   return Math.floor(Math.random() * 4);
 };
 
+const papperRockScissors = (select, random) => {
+  if ((select == 1 && random == 3) || (select == 2 && random == 1) || (select == 3 && random == 2)) {
+    budget -= 300000;
+    alert(`Perdiste, ahora pagarás $300.000 y tu presupuesto es de ${budget}`);
+  } else {
+    alert(`Has ganado, no debes pagar nada. Tu presupuesto es ${budget}`);
+  }
+};
+
 const priceTaxi = () => {
   alert(
-    "El taxi, le pide que le 300.000 pesos, y as quedado sorprendido, asi que empiezas a negociar con él, y le dice que, si le gana papel piedra o tijera, le pagara los 300.000, pero si el taxista pierde, no le cobra nada. Solo será una ronda. Si hay empata, no pasa nada."
+    "As llegado al hotel y el taxi, te pide que pagues $300.000 pesos, y as quedado sorprendido, asi que empiezas a negociar con él, y le dice que, si le gana papel piedra o tijera, le pagara los 300.000, pero si el taxista pierde, no le cobra nada. Solo será una ronda. Si hay empata, no pasa nada."
   );
   let choise = prompt(
     "¿Quieres ganar papel, piedra o tijera? \n1.Papel \n2.Piedra \n3.Tijera"
   );
   if (choise.match(/^[1-3]$/)) {
     let taxi = getRandomInt();
+    papperRockScissors(taxi,choise);
+  }else{
+    alert('As escogido un valor no valido! PERDISTE debes pagar $300.000');
+    budget-=300000;
+    alert(`Tu presupuesto restante es: $${budget}`);
+
   }
 };
 
-// footSelect();
-// waitingRoom();
-// hunger();
+//footSelect();
+//waitingRoom();
+//hunger();
 //binPassword();
 //vocal();
+//priceTaxi()
