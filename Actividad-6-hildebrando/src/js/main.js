@@ -122,7 +122,7 @@ const binPassword = () => {
 const vocal = () => {
   let string = "Taxi me puede llevar al hotel mariposas amarillas";
   let aux = confirm(
-    `As llegado a macondo, todos hablan con la vocal ´i´ unicamente\nAs solicitado un taxi debes usar un traductor para que te entienda! confirma vas a usar el traductor en la frase ${string}`
+    `As llegado a macondo, todos hablan con la vocal "i" unicamente\nAs solicitado un taxi debes usar un traductor para que te entienda! confirma vas a usar el traductor en la frase ${string}`
   );
   if (aux) {
     translate(string);
@@ -189,9 +189,82 @@ const priceTaxi = () => {
   }
 };
 
+//Hotel actividades
+const yellow = () => {
+  alert('as elegido venir a piscina, el agua huele bastante extraño como a "ClO-" mezclado con "Na"');
+  let choice = confirm('Vas a ingresar a la piscina con ese olor y gases tan fuertes?');
+  if(choice){
+   //++++++++++++++++++++++++++++ finally();
+  }
+  activityHotel();
+}
+
+const green = () => {
+  alert('As elegido realizar caminatas, y tomar agua para el camino');
+  let choice = prompt('Vas a realizar toda la caminata , al final hay una hermosa cascada');
+  if(!choice){
+    alert('Como as elegido devolverte, te as perdido y es de noche!')
+  //+++++++++++++++++++++ finally();
+  };
+  alert('Disfruta del paisaje y toma muchas fotos!');
+  activityHotel();
+}
+
+const red = () => {
+  alert(`As elegido actividades en la playa:
+        - voleibol, juega y la pasa genial.
+        - nada en el mar, y monta moto
+        - se pone a tomar cocteles mientras descansa, de pronto siente un fuerte dolor de cabeza y empieza a perder la visión, chirrinchi adulterado, se tiene que devolver de emergencia.`);
+  // ++++++++++++++++++++++++ finish()
+}
+
+let bingo = Math.random();
+
+const blue = () => {
+  alert(`As elegido realizar actividades dentro del hotel.
+        - bailas, y la pasa muy bien`);
+  let luck = confirm('Quieres probar suerte con el bingo a lo mejor ganas');
+  if(luck){
+    let money = budget * bingo;
+    budget += money;
+    alert(`As ganado ahora tu presupuesto aumento en $${money} y tu total es de $ ${budget}`);
+  }
+  activityHotel()
+}
+
+
+const activitySelect = (select) => {
+  switch(select){
+    case '1':
+      yellow();
+      break;
+    case '2':
+      green();
+      break;
+    case '3':
+      red();
+      break;
+    case '4':
+      blue();
+      break
+  }
+}
+
+const activityHotel = () => {
+  let choise = confirm('Deseas hacer una actividad hoy en el hotel:');
+  while (choise === true){
+    let select = prompt(`Ingrese que actividad desea realizar:
+                        1. Ir a la piscina, pero el agua huele raro!
+                        2. Realizar caminatas y agüita para el camino!
+                        3. Actividades en la playa!
+                        4.Actividaddes dentro del hotel`);
+      activitySelect(select);
+  }
+}
+
 //footSelect();
 //waitingRoom();
 //hunger();
 //binPassword();
 //vocal();
-priceTaxi()
+//priceTaxi()
