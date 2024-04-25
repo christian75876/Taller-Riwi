@@ -1,5 +1,6 @@
 //Pago dia viernes.
 let budget = 2500000;
+alert('Te encuentras en el areopuerto el dorado en bogota y tienes hambre!')
 
 //Dia viernes 'Bogota' elección de comida.
 const choiseFood = (selectFoot) => {
@@ -35,14 +36,15 @@ const footSelect = () => {
                         1.Almojábana con gaseosa $15000.
                         2.Subway con gaseosa $23000.
                         3.No quiero comer nada.`);
-  if (selectFoot.match(/^[1-3]$/)) {
-    choiseFood(selectFoot);
-  } else {
-    alert(
-      "Escogiste un valor distinto de 1 a 3, vuelve a ingresar  una opción válida."
-    );
-    footSelect();
-  }
+    if (selectFoot !== null && selectFoot.match(/^[1-3]$/)) {
+      choiseFood(selectFoot);
+    } else {
+      alert(
+        "Escogiste un valor distinto de 1 a 3 o no seleccionaste ninguna opción, vuelve a ingresar una opción válida."
+      );
+      footSelect();
+    }
+    
 };
 
 // Dia Viernes sala de espera
@@ -90,6 +92,8 @@ const hunger = () => {
       if (menu) {
         budget -= 60000;
         alert(`Tu presupuesto restante es: $${budget}`);
+      }else{
+        alert(`No compraste nada tu presupuesto seguira en ${budget}`);
       }
     }
   }
@@ -108,6 +112,9 @@ const binPassword = () => {
     });
     alert(result);
     let hours = parseInt(prompt("Ingresa cuantas horas utilizaste el wifi"));
+    while(isNaN(hours)){
+      hours = parseInt(prompt("Al parecer as ingresado un caracter no valido solo permitimos numeros"));
+    }
     budget -= hours * 50000;
     alert(`Tu presupuesto restante es: $${budget}`);
   } else {
@@ -125,6 +132,7 @@ const vocal = () => {
     `As llegado a macondo, todos hablan con la vocal "i" unicamente\nAs solicitado un taxi debes usar un traductor para que te entienda! confirma vas a usar el traductor en la frase ${string}`
   );
   if (aux) {
+    alert('El traductor dice:')
     translate(string);
   } else {
     alert("No te entendio.!");
@@ -180,7 +188,7 @@ const priceTaxi = () => {
   ));
   if (choise >= 1 && choise <=3) {
     let taxi = getRandomInt();
-    papperRockScissors(taxi,choise);
+    papperRockScissors(choise,taxi);
   }else{
     alert('As escogido un valor no valido! PERDISTE debes pagar $300.000');
     budget-=300000;
@@ -194,8 +202,9 @@ const yellow = () => {
   alert('as elegido venir a piscina, el agua huele bastante extraño como a "ClO-" mezclado con "Na"');
   let choice = confirm('Vas a ingresar a la piscina con ese olor y gases tan fuertes?');
   if(choice){
-   //++++++++++++++++++++++++++++ finally();
+    finishTravel(false);
   }
+  alert('As regresado al tu habitacion del hotel y pasara un nuevo dia');
   activityHotel();
 }
 
@@ -203,10 +212,14 @@ const green = () => {
   alert('As elegido realizar caminatas, y tomar agua para el camino');
   let choice = prompt('Vas a realizar toda la caminata , al final hay una hermosa cascada');
   if(!choice){
-    alert('Como as elegido devolverte, te as perdido y es de noche!')
-  //+++++++++++++++++++++ finally();
+    alert(`Como as elegido devolverte, te as perdido y es de noche!
+    pero puedes ver!
+    "Las hormigas de fuego": estas enormes hormigas rojas que devoran todo a su paso y representan una plaga destructiva en Macondo.
+    "Los peces dorados": Estos peces, que aparecen en el río, tienen la particularidad de volar en el aire y caer sobre las personas que pasan cerca.
+    "La rana piojosa": Es una rana que sufre de una infestación de piojos y es utilizada como un símbolo de decadencia y corrupción en Macondo.`)
+    finishTravel(false);
   };
-  alert('Disfruta del paisaje y toma muchas fotos!');
+  alert('Disfruta del paisaje y toma muchas fotos! regresas al hotel y pasara un nuevo dia');
   activityHotel();
 }
 
@@ -215,7 +228,7 @@ const red = () => {
         - voleibol, juega y la pasa genial.
         - nada en el mar, y monta moto
         - se pone a tomar cocteles mientras descansa, de pronto siente un fuerte dolor de cabeza y empieza a perder la visión, chirrinchi adulterado, se tiene que devolver de emergencia.`);
-  // ++++++++++++++++++++++++ finish()
+        finishTravel()
 }
 
 let bingo = Math.random();
@@ -246,25 +259,61 @@ const activitySelect = (select) => {
       break;
     case '4':
       blue();
-      break
+      break;
+    case '5':
+      finishTravel();
+      break;
+    default:
+      console.error('Evento inesperado ActivitySelect')
   }
 }
 
+let days = 1;
+
 const activityHotel = () => {
-  let choise = confirm('Deseas hacer una actividad hoy en el hotel:');
+  let choise = confirm('Deseas hacer una actividad hoy en el hotel!');
   while (choise === true){
     let select = prompt(`Ingrese que actividad desea realizar:
                         1. Ir a la piscina, pero el agua huele raro!
                         2. Realizar caminatas y agüita para el camino!
                         3. Actividades en la playa!
-                        4.Actividaddes dentro del hotel`);
-      activitySelect(select);
+                        4. Actividaddes dentro del hotel
+                        5. Regresar a casa`);
+    if (select === '5'){
+      return;
+    }
+    activitySelect(select);
+    days++;
+  }
+  if(choise === false){
+    alert('No quieres hacer nada el dia de hoy! ok');
+    days++;
+    alert('Nuevo dia');
+    activityHotel();
   }
 }
 
-//footSelect();
-//waitingRoom();
-//hunger();
-//binPassword();
-//vocal();
-//priceTaxi()
+const finishTravel = (survived=true) => {
+  let aux = 2500000 - budget;
+  if (survived) {
+    alert('¡El viaje ha terminado con éxito!');
+    alert(`Has sobrevivido ${days} días en Macondo.
+           Regresaste vivo.
+           El dinero gastado fue de ${aux}`);
+  } else {
+    alert(`Tus decisiones te han llevado a la muerte. No pudiste regresar.
+           Estuviste en Macondo durante ${days} días y gastaste un total de ${aux}.
+           Qué pena.`);
+    if (aux > 2500000) {
+      alert('Increíblemente, has ganado dinero en este viaje. ¡Sigue viajando!');
+    }
+  }
+};
+
+footSelect();
+waitingRoom();
+hunger();
+binPassword();
+vocal();
+priceTaxi();
+activityHotel();
