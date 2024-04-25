@@ -1,11 +1,11 @@
 //Pago dia viernes.
 let budget = 2500000;
 let days = 0;
-alert('Te encuentras en el areopuerto el dorado en bogota y tienes hambre!')
+alert('¡Estás en el Aeropuerto El Dorado en Bogotá y tienes hambre!')
 
 //Dia viernes 'Bogota' elección de comida.
 const choiseFood = (selectFoot) => {
-  const message = `Disfruta tu comida, recuerda tu presupuesto restante es: $`;
+  const message = `Disfruta tu comida, recuerda que tu presupuesto restante es: $`;
   switch (selectFoot) {
     case "1":
       budget = budget - 15000;
@@ -17,11 +17,12 @@ const choiseFood = (selectFoot) => {
       break;
     case "3":
       alert(
-        `Deberas comprar comida al llegar a medellin tu presupuesto sigue en: $${budget}`);
+        `Deberás comprar comida al llegar a Medellín. Tu presupuesto sigue en: $
+        ${budget}`);
       return;
     default:
       alert(
-        "Opción incorrecta. Evento inesperado. Error presentado en dia viernes choiseFood....!!!"
+        "Opción incorrecta. Evento inesperado. ¡Error presentado en día viernes choiseFood....!!!"
       );
   }
   let choise = confirm("Deseas comprar algo mas?");
@@ -33,19 +34,19 @@ const choiseFood = (selectFoot) => {
 };
 
 const footSelect = () => {
-  selectFoot = prompt(`Por favor escoge la elección del menu:
+  selectFoot = prompt(`Por favor escoge la elección del menú:
                         1.Almojábana con gaseosa $15000.
                         2.Subway con gaseosa $23000.
                         3.No quiero comer nada.`);
-    if (selectFoot !== null && selectFoot.match(/^[1-3]$/)) {
-      choiseFood(selectFoot);
-    } else {
-      alert(
-        "Escogiste un valor distinto de 1 a 3 o no seleccionaste ninguna opción, vuelve a ingresar una opción válida."
-      );
-      footSelect();
-    }
-    
+  if (selectFoot !== null && selectFoot.match(/^[1-3]$/)) {
+    choiseFood(selectFoot);
+  } else {
+    alert(
+      "Escogiste un valor distinto de 1 a 3 o no seleccionaste ninguna opción, vuelve a ingresar una opción válida."
+    );
+    footSelect();
+  }
+
 };
 
 // Dia Viernes sala de espera
@@ -58,7 +59,7 @@ const waitingRoom = () => {
   let lengthSuitcase = 40;
   let widthSuitcase = 20;
 
-  alert(`Hola Hildebrando ahora te encuentras en la sala de espera pero a ocurrido un problema con tu equipaje, este no cumple con las medidas estandar debes reducir el tamaño de tu maleta de mano las medidas permitidas son: 55 cm (alto) x 40 cm (largo) x 20 cm (ancho) y tus medidas actuales son: 
+  alert(`Hola, Hildebrando ahora te encuentras en la sala de espera, pero ha ocurrido un problema con tu equipaje. Este no cumple con las medidas estándar. Debes reducir el tamaño de tu maleta de mano. Las medidas permitidas son: 55 cm (alto) x 40 cm (largo) x 20 cm (ancho) y tus medidas actuales son:
     * alto ${tallSuitcase} cm
     * largo ${lengthSuitcase} cm
     * ancho ${widthSuitcase} cm\nAsi que debes sacar ropa!`);
@@ -74,34 +75,35 @@ const waitingRoom = () => {
   lengthSuitcase *= factMin;
   widthSuitcase *= factMin;
 
-  alert(`Que bien as sacado el factor minimo de las medidas y as disminuido correctamente tu equipaje. las nuevas medidas que tienes ahora son:
+  alert(`Que bien, as sacado el factor mínimo de las medidas y as disminuido correctamente tu equipaje. Las nuevas medidas que tienes ahora son:
     * alto ${Math.round(tallSuitcase)} cm
     * largo ${Math.round(lengthSuitcase)} cm
     * ancho ${Math.round(
-      widthSuitcase
-    )} cm \nCumples con las politcas de la maleta continua!`);
+    widthSuitcase
+  )} cm \n¡Cumples con las políticas de la maleta continúa!`);
 };
 
 //Dia Sabado 'Medellin' 02:00
 const hunger = () => {
   if (selectFoot === "3") {
-    let choise = confirm(`As llegado a la ciudad de Medellin. Hace un poco de Hambre, quieres comprar algo?`);
+    let choise = confirm(`As llegado a la ciudad de Medellín. ¿Hace un poco de Hambre, quieres comprar algo?`);
     if (choise) {
       let menu = confirm(
-        `son las 02:00 solo esta abierto un restaurante, unicamente tiene combo de hamburger a $60.000`
+        `Son las 02:00, solo está abierto un restaurante, únicamente tiene un combo de hamburguesas a $60.000.`
       );
       if (menu) {
         budget -= 60000;
         alert(`Tu presupuesto restante es: $${budget}`);
-      }else{
-        alert(`No compraste nada tu presupuesto seguira en ${budget}`);
+      } else {
+        alert(`No compraste nada, tu presupuesto seguirá en: ${budget}`);
       }
     }
   }
 };
 
 const binPassword = () => {
-  let option = confirm("Vas a usar el wifi? recuerda que cada hora tiene un precio de $50.000");
+  alert('Debes reservar el hotel antes de salir de Medellín.')
+  let option = confirm("¿Vas a usar el wifi? Recuerda que cada hora tiene un precio de $50.000.");
   if (option) {
     alert('La contraseña esta en numeros binarios "01110010_01101001_01110111_01101001"; vamos a traducirla la contraseña es: ')
     let pass = "01110010_01101001_01110111_01101001".split("_");
@@ -112,15 +114,15 @@ const binPassword = () => {
       result += password;
     });
     alert(result);
-    let hours = parseInt(prompt("Ingresa cuantas horas utilizaste el wifi"));
-    while(isNaN(hours)){
-      hours = parseInt(prompt("Al parecer as ingresado un caracter no valido solo permitimos numeros"));
+    let hours = parseInt(prompt("Ingresa cuántas horas utilizaste el wifi."));
+    while (isNaN(hours)) {
+      hours = parseInt(prompt("Al parecer as ingresado un carácter no válido, solo permitimos números."));
     }
     budget -= hours * 50000;
     alert(`Tu presupuesto restante es: $${budget}`);
   } else {
     alert(
-      "Si no te conectas, no podras reservar el hotel, no debes dejar nada a la suerte!"
+      "Si no te conectas, no podrás reservar el hotel, ¡no debes dejar nada a la suerte!"
     );
     binPassword();
   }
@@ -128,15 +130,17 @@ const binPassword = () => {
 
 //Macondo
 const vocal = () => {
-  let string = "Taxi me puede llevar al hotel mariposas amarillas";
+  alert('¡Llega un taxi!')
+  let string = "Taxi; me puede llevar al hotel mariposas amarillas";
+  alert('¡El taxista no te entiende!')
   let aux = confirm(
-    `As llegado a macondo, todos hablan con la vocal "i" unicamente\nAs solicitado un taxi debes usar un traductor para que te entienda! confirma vas a usar el traductor en la frase ${string}`
+    `¡Has llegado a Macondo, todos hablan con la vocal "i" únicamente\nHas solicitado un taxi, debes usar un traductor para que te entienda! Confirma, si vas a usar el traductor en la frase. ${string}`
   );
   if (aux) {
     alert('El traductor dice:')
     translate(string);
   } else {
-    alert("No te entendio.!");
+    alert("¡No te entendio!");
     vocal();
   }
 };
@@ -164,42 +168,41 @@ const getChoice = (choice) => {
 };
 
 const papperRockScissors = (select, random) => {
-  if(select == random){
-    alert(`Empate no pasa nada, y no pagas nada tu presupuesto es ${budget}`);
+  if (select == random) {
+    alert(`Empate, no pasa nada, y no pagas nada, tu presupuesto es. ${budget}`);
     return
   }
   if ((select == 1 && random == 3) || (select == 2 && random == 1) || (select == 3 && random == 2)) {
     budget -= 300000;
-    alert(`El taxista escogio ${getChoice(random)}
-          tu escogiste ${getChoice(select)}`);
-    alert(`Perdiste, ahora pagarás $300.000 y tu presupuesto es de ${budget}`);
+    alert(`El taxista escogió ${getChoice(random)}
+           Tú escogiste ${getChoice(select)}`);
+    alert(`Perdiste, ahora pagarás $300.000 y tu presupuesto es de: $${budget}`);
   } else {
-    alert(`El taxista escogio ${getChoice(random)}
-          tu escogiste ${getChoice(select)}`);
-    alert(`Has ganado, no debes pagar nada. Tu presupuesto es ${budget}`);
+    alert(`El taxista escogió ${getChoice(random)}
+           Tú escogiste ${getChoice(select)}`);
+    alert(`Has ganado, no debes pagar nada. Tu presupuesto es: $${budget}`);
   }
 };
 
 const priceTaxi = () => {
   alert(
-    "As llegado al hotel y el taxi, te pide que pagues $300.000 pesos, y as quedado sorprendido, asi que empiezas a negociar con él, y le dice que, si le gana papel piedra o tijera, le pagara los 300.000, pero si el taxista pierde, no le cobra nada. Solo será una ronda. Si hay empata, no pasa nada."
-  );
+    'Has llegado al hotel y el taxista te pide que pagues $300.000 pesos, lo cual te ha sorprendido. Comienzas a negociar con él y le propones un juego: si ganas en "piedra, papel o tijera", le pagarás los $300.000, pero si el taxista pierde, no le debes nada. Solo será una ronda y si hay empate, no habrá pago.');
   let choise = parseInt(prompt(
     "¿Quieres ganar papel, piedra o tijera? \n1.Papel \n2.Piedra \n3.Tijera"
   ));
-  if (choise >= 1 && choise <=3) {
+  if (choise >= 1 && choise <= 3) {
     let taxi = getRandomInt();
-    papperRockScissors(choise,taxi);
-  }else{
-    alert('As escogido un valor no valido! PERDISTE debes pagar $300.000');
-    budget-=300000;
+    papperRockScissors(choise, taxi);
+  } else {
+    alert('¡As escogido un valor no válido! PERDISTE, debes pagar $300.000.');
+    budget -= 300000;
     alert(`Tu presupuesto restante es: $${budget}`);
 
   }
 };
 
 //final
-const finishTravel = (survived=true) => {
+const finishTravel = (survived = true) => {
   let aux = 2500000 - budget;
   if (aux > 2500000) {
     alert('Increíblemente, has ganado dinero en este viaje. ¡Sigue viajando!');
@@ -209,69 +212,78 @@ const finishTravel = (survived=true) => {
     alert(`Has sobrevivido ${days} días en Macondo.
            Regresaste vivo.
            El dinero gastado fue de ${aux}`);
-           return;
+    return;
   } else {
     alert(`Tus decisiones te han llevado a la muerte. No pudiste regresar.
            Estuviste en Macondo durante ${days} días y gastaste un total de ${aux}.
            Qué pena.`);
-           return;
+    return;
   }
 };
 
 //Hotel actividades
 const yellow = () => {
-  alert('as elegido venir a piscina, el agua huele bastante extraño como a "ClO-" mezclado con "Na"');
-  let choice = confirm('Vas a ingresar a la piscina con ese olor y gases tan fuertes?');
-  if(choice){
+  alert('Has elegido venir a la piscina, ¿verdad? El agua aquí huele bastante extraño, como a una mezcla de "ClO-" y "Na".');
+  let choice = confirm('¿Vas a entrar a la piscina con ese olor tan fuerte y esos gases?');
+  if (choice) {
     finishTravel(false);
     return;
-  }else{
-    alert('As regresado al tu habitacion del hotel y pasara un nuevo dia');
+  } else {
+    alert('Has regresado a tu habitación de hotel y comenzará un nuevo día.');
     activityHotel();
   }
-  
+
 }
 
 const green = () => {
-  alert('As elegido realizar caminatas, y tomar agua para el camino');
-  let choice = confirm('Vas a realizar toda la caminata , al final hay una hermosa cascada');
-  if(!choice){
-    alert(`Como as elegido devolverte, te as perdido y es de noche!
-    pero puedes ver!
-    "Las hormigas de fuego": estas enormes hormigas rojas que devoran todo a su paso y representan una plaga destructiva en Macondo.
-    "Los peces dorados": Estos peces, que aparecen en el río, tienen la particularidad de volar en el aire y caer sobre las personas que pasan cerca.
-    "La rana piojosa": Es una rana que sufre de una infestación de piojos y es utilizada como un símbolo de decadencia y corrupción en Macondo.`)
+  alert('Has decidido hacer caminatas y llevar agua contigo en el camino.');
+  let choice = confirm('¿Vas a completar toda la caminata? Al final, te espera una hermosa cascada.');
+  if (!choice) {
+    alert(`Al elegir regresar, te has perdido y ahora es de noche. Sin embargo, todavía puedes ver. Te encuentras con tres sorpresas inesperadas:
+
+    - Las hormigas de fuego: enormes hormigas rojas que devoran todo a su paso y representan una plaga destructiva en Macondo.
+    - Los peces dorados: estos peces, que aparecen en el río, tienen la particularidad de volar en el aire y caer sobre las personas que pasan cerca.
+    - La rana piojosa: es una rana afectada por una infestación de piojos y se utiliza como símbolo de decadencia y corrupción en Macondo.`)
     finishTravel(false);
   };
-  alert('Disfruta del paisaje y toma muchas fotos! regresas al hotel y pasara un nuevo dia');
-  activityHotel();
+  if(choice){
+    alert('¡Disfruta del paisaje y captura muchos recuerdos en fotos! Cuando regreses al hotel, te espera un nuevo día lleno de posibilidades.');
+    activityHotel();
+  }
 }
-
 const red = () => {
   alert(`As elegido actividades en la playa:
         - voleibol, juega y la pasa genial.
         - nada en el mar, y monta moto
-        - se pone a tomar cocteles mientras descansa, de pronto siente un fuerte dolor de cabeza y empieza a perder la visión, chirrinchi adulterado, se tiene que devolver de emergencia.`);
-        finishTravel(false);
+        - se pone a tomar cocteles mientras descansa, de pronto siente un fuerte      dolor de cabeza y empieza a perder la visión, chirrinchi adulterado, se tiene que devolver de emergencia.`);
+  finishTravel(false);
 }
 
 let bingo = Math.random();
 
 const blue = () => {
-  alert(`As elegido realizar actividades dentro del hotel.
-        - bailas, y la pasa muy bien`);
-  let luck = confirm('Quieres probar suerte con el bingo a lo mejor ganas');
-  if(luck){
+  alert(`Has decidido participar en actividades dentro del hotel:
+  - ¡Te diviertes bailando y pasas un momento excelente!`);
+  let luck = confirm('¿Te animas a probar suerte con el bingo? Quién sabe, ¡quizás te lleves un premio!');
+  if (luck) {
     let money = budget * bingo;
-    budget += money;
-    alert(`As ganado ahora tu presupuesto aumento en $${money} y tu total es de $ ${budget}`);
+    budget += Math.floor(money);
+    alert(`¡Has ganado! Ahora tu presupuesto aumenta en $${Math.floor(money)} y tu total es de $ ${budget}`);
   }
-  activityHotel()
+  let backLuck = confirm('¡Estás en una racha de suerte increíble! ¿Por qué no apuestas en el casino? ¡Quizás ganes todavía más!');
+  if (backLuck) {
+    alert('Has apostado más de lo debido y has perdido. Ahora solo te queda el pasaje de regreso. Estas vacaciones han llegado a su fin.')
+    budget = 150000;
+    finishTravel();
+  }
+  if ((!luck || !backLuck)) {
+    activityHotel();
+  }
 }
 
 
 const activitySelect = (select) => {
-  switch(select){
+  switch (select) {
     case '1':
       yellow();
       break;
@@ -295,18 +307,17 @@ const activitySelect = (select) => {
 
 
 const activityHotel = () => {
-  let choise = confirm('Deseas hacer una actividad hoy en el hotel!');
+  let choise = confirm('¿Te gustaría participar en alguna actividad hoy en el hotel?');
   if (choise) {
-    let select = prompt(`Ingrese qué actividad desea realizar:
+    let select = prompt(`Por favor, elige la actividad que deseas realizar:
                         1. Ir a la piscina, pero el agua huele raro!
                         2. Realizar caminatas y agüita para el camino!
                         3. Actividades en la playa!
-                        4. Actividades dentro del hotel
+                        4. Actividades dentro del hotel!
                         5. Regresar a casa`);
 
     if (select >= 1 && select <= 5) {
       days++;
-      console.log('desde el hotel' + days);
       activitySelect(select);
     } else {
       alert('Valor no válido. Por favor, seleccione una opción válida.');
@@ -315,20 +326,17 @@ const activityHotel = () => {
   } else {
     alert('No quieres hacer nada el día de hoy. ¡Bien!');
     days++;
-    alert('Nuevo día');
+    alert('Nuevo día - "Fundido a negro"');
+    activityHotel();
   }
 };
 
-
-
-
-
-  footSelect();
-  waitingRoom();
-  hunger();
-  binPassword();
-  vocal();
-  priceTaxi();
-  activityHotel();
+footSelect();
+waitingRoom();
+hunger();
+binPassword();
+vocal();
+priceTaxi();
+activityHotel();
 
 
