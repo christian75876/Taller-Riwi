@@ -204,7 +204,7 @@ const priceTaxi = () => {
 //final
 const finishTravel = (survived = true) => {
   let aux = 2500000 - budget;
-  if (aux > 2500000) {
+  if (budget > 2500000) {
     alert('Increíblemente, has ganado dinero en este viaje. ¡Sigue viajando!');
   }
   if (survived) {
@@ -241,12 +241,18 @@ const green = () => {
   if (!choice) {
     alert(`Al elegir regresar, te has perdido y ahora es de noche. Sin embargo, todavía puedes ver. Te encuentras con tres sorpresas inesperadas:
 
-    - Las hormigas de fuego: enormes hormigas rojas que devoran todo a su paso y representan una plaga destructiva en Macondo.
-    - Los peces dorados: estos peces, que aparecen en el río, tienen la particularidad de volar en el aire y caer sobre las personas que pasan cerca.
-    - La rana piojosa: es una rana afectada por una infestación de piojos y se utiliza como símbolo de decadencia y corrupción en Macondo.`)
+          - Las hormigas de fuego: enormes hormigas rojas que devoran
+            todo a su paso y representan una plaga destructiva en
+            Macondo.
+          - Los peces dorados: estos peces, que aparecen en el río, tienen 
+            la particularidad de volar en el aire y caer sobre las personas
+            que pasan cerca.
+          - La rana piojosa: es una rana afectada por una infestación de 
+            piojos y se utiliza como símbolo de decadencia y corrupción 
+            en Macondo.`)
     finishTravel(false);
   };
-  if(choice){
+  if (choice) {
     alert('¡Disfruta del paisaje y captura muchos recuerdos en fotos! Cuando regreses al hotel, te espera un nuevo día lleno de posibilidades.');
     activityHotel();
   }
@@ -260,15 +266,17 @@ const red = () => {
 }
 
 let bingo = Math.random();
+let money = 0
 
 const blue = () => {
   alert(`Has decidido participar en actividades dentro del hotel:
   - ¡Te diviertes bailando y pasas un momento excelente!`);
   let luck = confirm('¿Te animas a probar suerte con el bingo? Quién sabe, ¡quizás te lleves un premio!');
   if (luck) {
-    let money = budget * bingo;
-    budget += Math.floor(money);
-    alert(`¡Has ganado! Ahora tu presupuesto aumenta en $${Math.floor(money)} y tu total es de $ ${budget}`);
+    money = budget * bingo;
+    money = Math.floor(money)
+    budget += money;
+    alert(`¡Has ganado! Ahora tu presupuesto aumenta en $${money} y tu total es de $ ${budget}`);
   }
   let backLuck = confirm('¡Estás en una racha de suerte increíble! ¿Por qué no apuestas en el casino? ¡Quizás ganes todavía más!');
   if (backLuck) {
