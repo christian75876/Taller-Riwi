@@ -138,14 +138,35 @@ const translate = (string) => {
 };
 
 const getRandomInt = () => {
-  return Math.floor(Math.random() * 4);
+  return Math.floor(Math.random() * 3) + 1;
+};
+
+const getChoice = (choice) => {
+  switch (choice) {
+    case 1:
+      return 'papel';
+    case 2:
+      return 'piedra';
+    case 3:
+      return 'tijera';
+    default:
+      return 'opción no válida';
+  }
 };
 
 const papperRockScissors = (select, random) => {
+  if(select == random){
+    alert(`Empate no pasa nada, y no pagas nada tu presupuesto es ${budget}`);
+    return
+  }
   if ((select == 1 && random == 3) || (select == 2 && random == 1) || (select == 3 && random == 2)) {
     budget -= 300000;
+    alert(`El taxista escogio ${getChoice(random)}
+          tu escogiste ${getChoice(select)}`);
     alert(`Perdiste, ahora pagarás $300.000 y tu presupuesto es de ${budget}`);
   } else {
+    alert(`El taxista escogio ${getChoice(random)}
+          tu escogiste ${getChoice(select)}`);
     alert(`Has ganado, no debes pagar nada. Tu presupuesto es ${budget}`);
   }
 };
@@ -154,10 +175,10 @@ const priceTaxi = () => {
   alert(
     "As llegado al hotel y el taxi, te pide que pagues $300.000 pesos, y as quedado sorprendido, asi que empiezas a negociar con él, y le dice que, si le gana papel piedra o tijera, le pagara los 300.000, pero si el taxista pierde, no le cobra nada. Solo será una ronda. Si hay empata, no pasa nada."
   );
-  let choise = prompt(
+  let choise = parseInt(prompt(
     "¿Quieres ganar papel, piedra o tijera? \n1.Papel \n2.Piedra \n3.Tijera"
-  );
-  if (choise.match(/^[1-3]$/)) {
+  ));
+  if (choise >= 1 && choise <=3) {
     let taxi = getRandomInt();
     papperRockScissors(taxi,choise);
   }else{
@@ -173,4 +194,4 @@ const priceTaxi = () => {
 //hunger();
 //binPassword();
 //vocal();
-//priceTaxi()
+priceTaxi()
